@@ -20,6 +20,10 @@ function Recordselect(obj, url, options) {
   this.page = 1;
   this.per_page = 10;
   this.options = options || {};
+
+  if(this.options.value_field === undefined ) {
+    this.options.value_field = "label|||value"
+  }
 }
 
 Recordselect.prototype.do_find = function() {
@@ -75,9 +79,16 @@ Recordselect.prototype.is_open = function() {
   return this.container.html().length > 0;
 }
 
-Recordselect.prototype.set = function(id, label) {
+Recordselect.prototype.set = function(value, label) {
   this.obj.val(label);
-  this.hidden_input.val(label + '|||' + id);
+
+  if (this.options.value_field == "label|||value")
+    this.hidden_input.val(lable + '|||' + value);
+  else if (this.options.value_field == "value")
+    this.hidden_input.val(value);
+  else if (this.options.value_field == "label") {
+    this.hidden_input.val(label);
+  }
 }
 
 Recordselect.prototype.onbodyclick = function(ev) {
