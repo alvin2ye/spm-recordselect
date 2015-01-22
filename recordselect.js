@@ -85,7 +85,7 @@ Recordselect.prototype.set = function(value, label) {
   this.obj.val(label);
 
   if (this.options.value_field == "label|||value")
-    this.hidden_input.val(lable + '|||' + value);
+    this.hidden_input.val(label + '|||' + value);
   else if (this.options.value_field == "value")
     this.hidden_input.val(value);
   else if (this.options.value_field == "label") {
