@@ -110,6 +110,7 @@ Recordselect.prototype._init = function() {
   this.obj.after(this.container);
   this.obj.after(this.hidden_input);
   this.container.hide();
+  this.container.css('width', this.options.width);
   this.obj.css('width', this.options.width);
   // move name from obj to hidden_input
   this.hidden_input.attr("name", this.obj.attr("name"));
