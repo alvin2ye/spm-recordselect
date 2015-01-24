@@ -12,8 +12,11 @@ require('./css/recordselect.css');
 var cdn_path = "http://agideo-cdn.b0.upaiyun.com/modules/recordselect/0.0.1/";
 
 function Recordselect(obj, url, options) {
+  this.options = options || {};
+
   this.current = null;
   this.obj = $(obj);
+  this.obj.original_width = this.obj.outerWidth();
   this.obj.addClass("record-select");
   this.obj.addClass("rs-label");
   this.hidden_input = $("<input type='hidden' class='value'>"); // value for ultimus
@@ -21,10 +24,13 @@ function Recordselect(obj, url, options) {
   this.url = url;
   this.page = 1;
   this.per_page = 10;
-  this.options = options || {};
 
   if(this.options.value_field === undefined ) {
-    this.options.value_field = "label|||value"
+    this.options.value_field = "label|||value";
+  }
+
+  if(this.options.width === undefined ) {
+    this.options.width = this.obj.original_width;
   }
 }
 
@@ -104,7 +110,8 @@ Recordselect.prototype._init = function() {
   this.obj.after(this.container);
   this.obj.after(this.hidden_input);
   this.container.hide();
-  if (this.options.width) this.obj.css('width', this.options.width);
+  this.container.css('width', this.options.width);
+  this.obj.css('width', this.options.width);
   // move name from obj to hidden_input
   this.hidden_input.attr("name", this.obj.attr("name"));
   this.obj.attr("name", '');
