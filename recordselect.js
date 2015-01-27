@@ -175,6 +175,7 @@ Recordselect.prototype.highlight = function(obj) {
 }
 
 Recordselect.prototype.onselect = function(id, value) {
+  this.page = 1;
   if (this.options.onchange) this.options.onchange(id, value);
   this.set(id, value);
   this.close();

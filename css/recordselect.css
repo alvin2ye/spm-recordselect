@@ -128,3 +128,7 @@ iframe.record-select-mask {
   float: left;
   margin-right: 5px;
 }
+.record-select-container .pagination {
+  width: 100%;
+  text-align: center;
+}
